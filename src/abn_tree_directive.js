@@ -297,6 +297,21 @@ module.directive('abnTree', [
               }
               return new_branch;
             };
+            tree.remove_branch = function(b) {
+              if(b!=null)
+              {
+                p = tree.get_parent_branch(b);
+              }
+              else
+              {
+                p = tree.get_parent_branch(tree.get_selected_branch());
+              }
+              p.children = p.children.filter(function(child){
+                return child.label = tree.get_selected_branch().label
+              });
+              return p;
+            };
+
             tree.add_root_branch = function(new_branch) {
               tree.add_branch(null, new_branch);
               return new_branch;
